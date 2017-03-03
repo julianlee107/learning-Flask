@@ -24,6 +24,9 @@ class User(db.Model):
         user=cls.query.filter(db.or_(
             User.nickname==user_name,User.email==user_name
         )).first()
+        if not user:
+            return None
+        return user
     def __repr__(self):
         return '<User %r>' %(self.nickname)
 
